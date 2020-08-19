@@ -26,10 +26,9 @@ class MainActivity : AppCompatActivity() {
                 it.result.promotion
             )
             viewPager.adapter = pagerAdapter
-
-//            viewPager.currentItem = pagerAdapter?.count?.div(2) ?: 0
         })
-
+        pageIndicatorView.count = 5; // specify total count of indicators
+        pageIndicatorView.selection = 2;
         getAllData()
     }
 

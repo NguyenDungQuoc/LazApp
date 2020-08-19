@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">LazApp</string>
+    <string name="laz_mall">LazMall</string>
+    <string name="laz_market">Siêu thị Lazada</string>
+    <string name="laz_sale">Mã Giảm Giá</string>
+    <string name="laz_list">Danh Mục</string>
+    <string name="laz_card_voucher">Nạp Thẻ - eVoucher</string>
 </resources>
