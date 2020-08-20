@@ -12,7 +12,7 @@ class PromotionFragment : Fragment(R.layout.fragment_promotion) {
     private var promotionProduct: PromotionProduct? = null
 
     companion object {
-        fun newInstance(promotionProduct: PromotionProduct) = PromotionFragment().apply {
+        fun newInstance(promotionProduct: PromotionProduct?) = PromotionFragment().apply {
             this.promotionProduct = promotionProduct
         }
     }

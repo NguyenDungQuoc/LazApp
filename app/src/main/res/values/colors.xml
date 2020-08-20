@@ -5,4 +5,7 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="gray_50">#718093</color>
     <color name="white">#f5f6fa</color>
+    <color name="orange">#e67e22</color>
+    <color name="blue_50">#3498db</color>
+    <color name="bg_gray">#f1f2f6</color>
 </resources>
