@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/bg_gray"
+    app:cardCornerRadius="5dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    app:cardElevation="10dp"-->
+    <!--    app:cardPreventCornerOverlap="false">-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:background="@drawable/bg_trending_rounded"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_trending_line1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/blue_name_trending"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="@string/trending_line1" />
+
+        <TextView
+            android:id="@+id/tv_trending_line2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blue_50"
+            android:textSize="14sp"
+            android:text="@string/trending_line2" />
+        <ImageView
+
+            android:id="@+id/imgTrending"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop" />
+
+    </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

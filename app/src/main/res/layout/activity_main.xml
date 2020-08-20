@@ -44,6 +44,8 @@
         layout="@layout/view_menu"/>
     <include
         layout="@layout/flash_sale_container"/>
+    <include
+        layout="@layout/trending_container"/>
 
 
 
