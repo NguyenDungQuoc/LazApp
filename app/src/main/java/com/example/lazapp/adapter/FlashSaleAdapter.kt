@@ -12,7 +12,7 @@ import com.example.lazapp.R
 import com.example.lazapp.model.FlashSaleProduct
 import kotlinx.android.synthetic.main.flash_sale_view.view.*
 
-class FlashSaleAdapter(
+class   FlashSaleAdapter(
     private val context: Context,
     private var _product: MutableList<FlashSaleProduct>
 ) :

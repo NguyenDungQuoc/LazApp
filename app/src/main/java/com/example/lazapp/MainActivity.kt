@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.lazapp.`interface`.RetrofitInterface
 import com.example.lazapp.adapter.FlashSaleAdapter
+import com.example.lazapp.adapter.ForYouAdapter
 import com.example.lazapp.adapter.TrendingAdapter
 import com.example.lazapp.adapter.ViewPageAdapter
 import com.example.lazapp.viewmodel.PromotionViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.flash_sale_container.*
+import kotlinx.android.synthetic.main.foryou_container.*
 import kotlinx.android.synthetic.main.trending_container.*
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity() {
     private var pagerAdapter: ViewPageAdapter? = null
     private var flashSaleAdapter:FlashSaleAdapter? = null
     private var trendingAdapter: TrendingAdapter? = null
+    private var forYouAdapter: ForYouAdapter? = null
     private var promotionViewModel: PromotionViewModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +35,8 @@ class MainActivity : AppCompatActivity() {
         recyclerViewFlashSale.layoutManager = GridLayoutManager(this, 3 )
         recyclerViewFlashSale.setHasFixedSize(true)
         flashSaleAdapter = FlashSaleAdapter(baseContext, mutableListOf())
-        trendingAdapter = TrendingAdapter(baseContext, mutableListOf())
+
+
         promotionViewModel?.result?.observe(this, {
             val listItemResponse = it.result?.flashSale
             listItemResponse?.let {
@@ -43,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         //trending product
         recyclerViewTrending.layoutManager = GridLayoutManager(this, 3 )
         recyclerViewTrending.setHasFixedSize(true)
+        trendingAdapter = TrendingAdapter(baseContext, mutableListOf())
         promotionViewModel?.result?.observe(this, {
             val listItemTrending = it.result?.trending
             listItemTrending?.let {
@@ -50,7 +55,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
         recyclerViewTrending.adapter = trendingAdapter
-        //
+        //Foryouproduct
+        recyclerViewForYou.layoutManager = GridLayoutManager(this, 2 )
+        recyclerViewForYou.setHasFixedSize(true)
+        forYouAdapter = ForYouAdapter(baseContext, mutableListOf())
+        promotionViewModel?.result?.observe(this, {
+            val listItemForYou = it.result?.forYou
+            listItemForYou?.let {
+                forYouAdapter?.setData(listItemForYou)
+            }
+        })
+        recyclerViewForYou.adapter = forYouAdapter
         resultOfPromotion()
 
         getAllData()
