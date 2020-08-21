@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginTop="7dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
@@ -27,16 +28,16 @@
     </RelativeLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFlashSale"
-        android:scrollbars="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:padding="4dp"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        tools:listitem="@layout/flash_sale_view" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFlashSale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:padding="4dp"
+            android:overScrollMode="never"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView2"
+            tools:listitem="@layout/flash_sale_view" />
 
 
 </LinearLayout>

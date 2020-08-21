@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="120dp"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     app:cardBackgroundColor="@color/bg_gray"
@@ -11,18 +11,28 @@
 <!--    app:cardElevation="10dp"-->
 <!--    app:cardPreventCornerOverlap="false">-->
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
+        android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imgFlashSale"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             />
+
+        <TextView
+            android:id="@+id/tvDiscountFlashSale"
+            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_discount_percent"
+            android:paddingTop="3dp"
+            android:paddingLeft="6dp"
+            android:text="%%5"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10dp" />
 
         <TextView
             android:layout_marginTop="7dp"
@@ -30,7 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_rounded"
+            android:layout_below="@+id/imgFlashSale"
             android:maxLines="1"
+            android:layout_marginLeft="3dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:singleLine="true"
@@ -44,9 +56,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/orange"
+            android:layout_marginLeft="3dp"
+            android:layout_below="@+id/tvSoldOutFlashSale"
             android:textStyle="bold"
             android:textSize="18dp"
             tools:text="Unknown" />
-    </LinearLayout>
+    </RelativeLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        >-->
+
+
+<!--        -->
+<!--        -->
+
+<!--    </LinearLayout>-->
 
 </androidx.cardview.widget.CardView>

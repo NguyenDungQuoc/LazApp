@@ -1,6 +1,7 @@
 package com.example.lazapp.adapter
 
 import android.content.Context
+import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,21 +45,28 @@ class ForYouAdapter(
 
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         val productFY = productForYou.getOrNull(position)
-        Glide.with(holder.imgForYou.context).load(productFY?.itemImg)
-            .into(holder.imgForYou)
-        holder.textNameForYou.text = productFY?.itemTitle
-        holder.textDiscount.text = productFY?.itemDiscount
-        holder.texPriceForYou.text = "${productFY?.itemPrice} đ"
-        holder.textPriceDiscoutForYou.text = "${productFY?.itemDiscountPrice} đ"
+        holder.itemView.apply {
+            Glide.with(imgForYou.context).load(productFY?.itemImg)
+                .into(imgForYou)
+            tvNameForYou.text = productFY?.itemTitle
+            tvDiscountForYou.text = productFY?.itemDiscount
+            tvPriceDiscountForYou.text = "${productFY?.itemDiscountPrice} đ"
+            if(productFY?.itemPrice != ""){
+                tvPriceForYou.text = "${productFY?.itemPrice} đ"
+                tvPriceForYou.paintFlags = tvPriceForYou.paintFlags or TextPaint.STRIKE_THRU_TEXT_FLAG
+            }else{
+                tvPriceForYou.text = ""
+            }
+        }
     }
 
     override fun getItemCount() = productForYou.size
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgForYou: ImageView = itemView.imgForYou
-        val textDiscount: TextView = itemView.tvDiscountForYou
-        val textNameForYou: TextView = itemView.tvNameForYou
-        val texPriceForYou:TextView = itemView.tvPriceForYou
-        val textPriceDiscoutForYou:TextView = itemView.tvPriceDiscountForYou
+//        val imgForYou: ImageView = itemView.imgForYou
+//        val textDiscount: TextView = itemView.tvDiscountForYou
+//        val textNameForYou: TextView = itemView.tvNameForYou
+//        val texPriceForYou:TextView = itemView.tvPriceForYou
+//        val textPriceDiscoutForYou:TextView = itemView.tvPriceDiscountForYou
     }
 }
