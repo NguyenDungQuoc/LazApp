@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.example.lazapp.`interface`.RetrofitInterface
 import com.example.lazapp.adapter.FlashSaleAdapter
 import com.example.lazapp.adapter.ForYouAdapter
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private var forYouAdapter: ForYouAdapter? = null
     private var promotionViewModel: PromotionViewModel? = null
 
+    private var mhandle:Handler = Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -45,14 +49,55 @@ class MainActivity : AppCompatActivity() {
         resultOfPromotion()
 
         getAllData()
+//        startBoutiqueRefreshTimer(2)
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+            override fun onPageSelected(position: Int) {
+                mhandle.removeCallbacks(mRunnable)
+                mhandle.postDelayed(mRunnable, 3000)
+            }
 
-            viewPager.postDelayed(Runnable {
-                kotlin.run { viewPager.currentItem = 5 }
-            }, 8)
+            override fun onPageScrollStateChanged(state: Int) {
+            }
 
+        })
+        }
+    var mRunnable : Runnable = Runnable {
+        run() {
+            var currentPage = viewPager.currentItem
 
+            currentPage = if (currentPage.plus(1) >= promotionViewModel?.result?.value?.result?.promotion?.size!!) {
+                0
+            } else {
+                currentPage.plus(1)
+            }
+            viewPager.currentItem = currentPage
+        }
     }
-   
+
+//    private fun startBoutiqueRefreshTimer(delayMs: Long) {
+//        Handler().apply {
+//            val runnable = object : Runnable {
+//                override fun run() {
+//                    for(i in 0..9){
+//                        if (i == viewPager.currentItem){
+//                             viewPager.currentItem = i
+//                            viewPager.currentItem.plus(1)
+//                        }
+//                        postDelayed(this, delayMs)
+//                    }
+//
+//
+//                }
+//            }
+//            postDelayed(runnable, delayMs)
+//        }
+//    }
     private fun foryou() {
         recyclerViewForYou.layoutManager = GridLayoutManager(this, 2)
         recyclerViewForYou.setHasFixedSize(true)
@@ -101,6 +146,7 @@ class MainActivity : AppCompatActivity() {
                 it.result?.promotion
             )
             viewPager.adapter = pagerAdapter
+            mhandle.postDelayed(mRunnable, 3000)
         })
         pageIndicatorView.count = 5; // specify total count of indicators
         pageIndicatorView.selection = 2;
@@ -127,24 +173,5 @@ class MainActivity : AppCompatActivity() {
      * viết hàm scroll viewpager đến vi trí chỉ định
      * dùng Handler để goi tới hàm scroll viewpager sau 1 khoảng thời gian chỉ định
      */
-//    private var timer: Timer? = null
-//    private fun createSlideShow() {
-//
-//        var currentPosition: Int = 0
-//        var handler: Handler = Handler()
-//
-//        val runnable = Runnable {
-//            if (currentPosition == promotionViewModel?.result?.value?.result?.promotion?.size) {
-//                currentPosition = 0
-//                viewPager.setCurrentItem(currentPosition++, true)
-//            }
-//        }
-//
-//        timer = Timer()
-//        timer!!.schedule(object : TimerTask() {
-//            override fun run() {
-//                handler.post(runnable)
-//            }
-//        }, 250, 2500)
-//    }
+
 }
