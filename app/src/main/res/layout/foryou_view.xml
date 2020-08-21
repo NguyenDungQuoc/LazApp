@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:id="@+id/imgForYou"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tvDiscountForYou"
+            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_discount_percent"
+            android:paddingTop="3dp"
+            android:paddingLeft="6dp"
+            android:text="%%5"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/tvNameForYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_below="@+id/imgForYou"
+            android:maxLines="2"
+            android:layout_marginLeft="3dp"
+            android:textSize="20sp"
+            tools:text="Unknown" />
+        <TextView
+            android:id="@+id/tvPriceDiscountForYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/orange"
+            android:layout_below="@+id/tvNameForYou"
+            android:layout_marginLeft="3dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:text="Unknown" />
+        <TextView
+            android:id="@+id/tvPriceForYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_50"
+            android:layout_marginLeft="3dp"
+            android:layout_below="@+id/tvPriceDiscountForYou"
+            android:textSize="18sp"
+            tools:text="Unknown" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

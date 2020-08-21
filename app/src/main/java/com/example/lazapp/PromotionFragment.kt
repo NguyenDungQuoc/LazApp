@@ -22,4 +22,5 @@ class PromotionFragment : Fragment(R.layout.fragment_promotion) {
         Glide.with(imgViewPager.context).load(promotionProduct?.imageURL).into(imgViewPager)
 
     }
+
 }

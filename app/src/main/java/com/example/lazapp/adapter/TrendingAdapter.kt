@@ -22,14 +22,14 @@ class TrendingAdapter(
     fun setData(productResult: MutableList<TrendingProduct>) {
 //        this.product = product
         //product.size = 5
-        val result = mutableListOf<TrendingProduct>()
-        for (i in 0..2) {
-            val item = productResult.getOrNull(i)
-            if (item != null)
-                result.add(item)
-        }
+//        val result = mutableListOf<TrendingProduct>()
+//        for (i in 0..2) {
+//            val item = productResult.getOrNull(i)
+//            if (item != null)
+//                result.add(item)
+//        }
 
-        this.trending = result
+        this.trending = productResult
         notifyDataSetChanged()
     }
 
@@ -41,10 +41,13 @@ class TrendingAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val trendingPos = trending.getOrNull(position)
-        Glide.with(holder.imgTrending.context).load(trendingPos?.items?.firstOrNull()?.itemImg)
-            .into(holder.imgTrending)
-        holder.textTrendingLine1.text = "Top Laz"
-        holder.textTrendingLine2.text = "Top Đề Xuất"
+        holder.apply {
+            Glide.with(imgTrending.context).load(trendingPos?.items?.firstOrNull()?.itemImg)
+                .into(imgTrending)
+            textTrendingLine1.text = "Top Laz"
+            textTrendingLine2.text = "Top Đề Xuất"
+        }
+
     }
 
     override fun getItemCount() = trending.size
