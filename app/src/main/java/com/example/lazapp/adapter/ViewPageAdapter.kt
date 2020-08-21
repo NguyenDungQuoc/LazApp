@@ -14,7 +14,7 @@ class ViewPageAdapter(
 
     private var pro: MutableList<PromotionProduct>? = promotion
     override fun getCount(): Int {
-        return promotion?.size ?:0
+        return promotion?.size ?: 0
     }
 
     override fun getItem(position: Int): Fragment {
