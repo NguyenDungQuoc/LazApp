@@ -1,5 +1,10 @@
 package com.example.lazapp.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+
+@Parcelize
 data class ForYouProduct(
     var itemRatingScore: Float? = null,
     var brandId: Int? = null,
@@ -17,4 +22,4 @@ data class ForYouProduct(
     var itemUrl: String? = null,//9
 
 
-)
+) : Parcelable

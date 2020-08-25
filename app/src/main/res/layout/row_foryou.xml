@@ -56,5 +56,16 @@
             android:layout_below="@+id/tvPriceDiscountForYou"
             android:textSize="18sp"
             tools:text="Unknown" />
+
+        <RatingBar
+            android:progressTint="@color/yellow_star"
+            android:rating="0"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:id="@+id/ratingBarForYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvPriceForYou"
+            android:layout_marginBottom="10dp"
+            android:stepSize="0.2"/>
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

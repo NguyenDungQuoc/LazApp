@@ -47,5 +47,5 @@
         android:nestedScrollingEnabled="false"
         app:layout_constraintTop_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/head_line"
-        tools:listitem="@layout/foryou_view" />
+        tools:listitem="@layout/row_foryou" />
 </LinearLayout>
