@@ -21,9 +21,9 @@
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
                 app:cardPreventCornerOverlap="false"
-                tools:context=".DetailForYou">
+                tools:context=".DetailForYouActivity">
 
-                <include layout="@layout/detail_foryou_product" />
+                <include layout="@layout/row_detail_foryou" />
 
             </androidx.cardview.widget.CardView>
 

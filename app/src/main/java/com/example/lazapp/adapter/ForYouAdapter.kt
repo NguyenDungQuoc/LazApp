@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
 import com.example.lazapp.model.ForYouProduct
+import kotlinx.android.synthetic.main.row_cart.view.*
 import kotlinx.android.synthetic.main.row_foryou.view.*
 
 class ForYouAdapter(
@@ -55,6 +56,7 @@ class ForYouAdapter(
                 tvPriceForYou.text = ""
             }
             ratingBarForYou.rating = (productFY?.itemRatingScore ?: 0) as Float
+
         }
     }
 

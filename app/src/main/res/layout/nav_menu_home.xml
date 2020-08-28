@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp">
+
+    <LinearLayout
+        android:id="@+id/lnHome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgHomeNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_home" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHomeNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trang chủ"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnLike"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/lnHome"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgLikeNavMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_heart_home" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLikeNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Yêu thích"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lnMess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/lnLike"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgMessNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_message" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMessNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tin nhắn"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lnCart"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@+id/lnMess"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2"
+
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnCartNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_shopping_cart"
+            app:layout_constraintBottom_toTopOf="@+id/tvCartNavMenu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCartNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Giỏ hàng"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCartNavMenu" />
+
+        <TextView
+            android:id="@+id/textNumberCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_number_cart"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toTopOf="@id/btnCartNavMenu"
+            app:layout_constraintEnd_toEndOf="@id/btnCartNavMenu"
+            app:layout_constraintStart_toEndOf="@id/btnCartNavMenu"
+            app:layout_constraintTop_toTopOf="@id/btnCartNavMenu" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/lnUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.2">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgUserNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_user" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvUserNavMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Người dùng"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+
+    <!--        android:id="@+id/imgLikeNavMenu"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@drawable/ic_heart_home"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/tvLikeNavMenu"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_chainStyle="packed"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/imgNavMenuHome"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_chainStyle="packed" />-->
+
+    <!--    <androidx.appcompat.widget.AppCompatTextView-->
+    <!--        android:id="@+id/tvLikeNavMenu"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="Trang chủ"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/tvHomeNavMenu"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/imgLikeNavMenu" />-->
+    <!--    -->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/btnCartFavorite"
+        android:icon="@drawable/ic_shopping_cart"
+        app:showAsAction="ifRoom"
+        android:title="Giỏ hàng" />
+    <item
+        android:id="@+id/HomeFavorite"
+        android:title="Trang chủ"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/icDelete"
+        android:title="Tin nhắn"
+        app:showAsAction="never" />
+</menu>

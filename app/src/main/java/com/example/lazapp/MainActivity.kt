@@ -1,12 +1,10 @@
 package com.example.lazapp
 
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +15,10 @@ import com.example.lazapp.adapter.TrendingAdapter
 import com.example.lazapp.adapter.ViewPageAdapter
 import com.example.lazapp.viewmodel.PromotionViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.flash_sale_container.*
-import kotlinx.android.synthetic.main.foryou_container.*
-import kotlinx.android.synthetic.main.trending_container.*
+import kotlinx.android.synthetic.main.container_flash_sale.*
+import kotlinx.android.synthetic.main.container_foryou.*
+import kotlinx.android.synthetic.main.container_trending.*
+import kotlinx.android.synthetic.main.nav_menu_home.*
 
 class MainActivity : AppCompatActivity() {
     private var pagerAdapter: ViewPageAdapter? = null
@@ -34,7 +33,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        lnLike.setOnClickListener {
+            val intent: Intent = Intent(this@MainActivity, ListFavoriteActivity::class.java)
+            intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
+            startActivity(intent)
+        }
+        lnCart.setOnClickListener {
+            val intent: Intent = Intent(this@MainActivity, CartForYouActivity::class.java)
+           intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
+            startActivity(intent)
+        }
         promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel::class.java)
         //flashsale product
         flashsale()
@@ -78,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.currentItem = currentPage
     }
 
+
     private fun foryou() {
         recyclerViewForYou.layoutManager = GridLayoutManager(this, 2)
         recyclerViewForYou.setHasFixedSize(true)
@@ -91,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewForYou.adapter = forYouAdapter
         //click item
         forYouAdapter?.onClick = {
-            val intent = Intent(this@MainActivity, DetailForYou::class.java)
+            val intent = Intent(this@MainActivity, DetailForYouActivity::class.java)
             intent.putExtra("DATA", it)
             startActivity(intent)
 

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+
+        android:onClick="onClickButton"
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tổng cộng :"
+        android:textSize="16sp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textSumPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        tools:text="0 đ"
+        android:textStyle="bold"
+        android:layout_marginTop="14dp"
+        android:textSize="16sp"
+        android:textColor="@color/pink_red"
+        app:layout_constraintStart_toEndOf="@+id/tvSum"
+        app:layout_constraintTop_toTopOf="parent"
+         />
+
+
+
+
+
+    <Button
+        android:id="@+id/btnPay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_btn_cart"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Thanh toán"
+        android:onClick="onClickButton"
+        android:textColor="@color/white"
+        app:layout_constraintDimensionRatio="3:1.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".3" />
+    <!--    <Button-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,10 @@
     <style name="AppTheme.Transparent" parent="Theme.AppCompat.Light">
         <item name="android:windowActionBarOverlay">true</item>
         <item name="windowActionBarOverlay">true</item>
-
-
     </style>
 
+    <style name="CheckboxTheme" parent="Theme.AppCompat">
+        <item name="colorAccent">@color/pink_red</item>
+        <item name="android:textColorSecondary">@color/pink_red</item>
+    </style>
 </resources>
