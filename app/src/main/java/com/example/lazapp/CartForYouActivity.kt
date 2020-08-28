@@ -3,16 +3,14 @@ package com.example.lazapp
 import android.app.Activity
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lazapp.adapter.CartAdapter
 import com.example.lazapp.model.ForYouProduct
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlinx.android.synthetic.main.actionbar_cart.*
 import kotlinx.android.synthetic.main.activity_cart_for_you.*
 
 class CartForYouActivity : AppCompatActivity() {
@@ -29,7 +27,23 @@ class CartForYouActivity : AppCompatActivity() {
         recyclerViewCart.layoutManager = GridLayoutManager(this, 1)
         recyclerViewCart.setHasFixedSize(true)
 
+        btnDeleteCart.setOnClickListener {
+            var listChecked = adapter?.getListCheckedProduct() ?: mutableListOf()
+            for(index in ((listCart?.size ?: 0) - 1) downTo 0 )  {
+                val  item = listCart?.getOrNull(index)
+                for (i in listChecked){
+                    if (i.id ==  item){
+                        listCart?.removeAt(index)
+                        break
+                    }
+                }
 
+            }
+            prefsEditor?.putString("LIST_ID_CART", Gson().toJson((listCart)))
+            prefsEditor?.apply()
+            adapter?.removeCheckedProduct()
+
+        }
 
 
         sharedPre = getSharedPreferences("APP_LAZADA", Activity.MODE_PRIVATE)
@@ -61,13 +75,13 @@ class CartForYouActivity : AppCompatActivity() {
             R.id.btnBackCart -> {
                 onBackPressed()
             }
-            R.id.btnDeleteCart -> {
-                //goi ham lay item da check tu mang
+//            R.id.btnDeleteCart -> {
+//                Toast.makeText(this,"Hello",Toast.LENGTH_SHORT).show()
+//                //goi ham lay item da check tu mang
 //                var listChecked = adapter?.getListCheckedProduct() ?: mutableListOf()
-
-//                //
+//
 //                adapter?.removeCheckedProduct()
-            }
+//            }
         }
     }
 

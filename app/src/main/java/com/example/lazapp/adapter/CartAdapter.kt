@@ -18,13 +18,24 @@ class CartAdapter(
     private var _foryou: MutableList<ForYouProduct>
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private var productForYou: MutableList<ForYouProduct> = _foryou
-
+    private var numProduct:Int = 0
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             init {
                 itemView.checkBox.setOnClickListener {
                     var position = adapterPosition
                     var item = productForYou[position]
                     item.isCheck = true
+                }
+
+                itemView.btnAdd.setOnClickListener {
+                    numProduct++
+                        itemView.textNumber.text = numProduct.toString()
+                }
+                itemView.btnReduce.setOnClickListener {
+                   if(numProduct > 0){
+                       numProduct--
+                       itemView.textNumber.text = numProduct.toString()
+                   }
                 }
             }
     }
@@ -42,6 +53,7 @@ class CartAdapter(
             tvNameCart.text = productFY?.itemTitle
             tvDiscountPercent.text = "-${productFY?.itemDiscount}"
             tvPriceDiscountCart.text = "${productFY?.itemDiscountPrice} đ"
+            textNumber.text = numProduct.toString()
             if (productFY?.itemPrice != "") {
                 tvPriceCart.text = "${productFY?.itemPrice} đ"
                 tvPriceCart.paintFlags =
@@ -56,27 +68,31 @@ class CartAdapter(
 //            }
             checkBox.isChecked = productFY?.isCheck == true
         }
+  //     var sumPrice: Int = 0
+//        sumPrice = productFY?.itemDiscountPrice?.toInt()?.times(itemCount) ?: 0
 
     }
 
     override fun getItemCount() = productForYou?.size
 
-//    fun getListCheckedProduct(): MutableList<ForYouProduct> {
-//
-//           for(id in _foryou.size downTo 0){
-//               val listChecked = _foryou
-//               if ()
-//           }
-//
-//
-//    }
+    fun getListCheckedProduct(): MutableList<ForYouProduct> {
+        val listCheck:MutableList<ForYouProduct> = mutableListOf()
+        for (i in 0 until _foryou.size)
+        {
+            val item = _foryou[i]
+            if(item.isCheck)
+                listCheck.add(item)
+        }
+        return listCheck
+    }
 
-//    fun removeCheckedProduct() {
-//        for (index in _foryou.size downTo 0) {
-//            val item = _foryou.getOrNull(index) ?: break
-//            if (item.isCheck)
-//                _foryou.removeAt(index)
-//        }
-//        notifyDataSetChanged()
-//    }
+    fun removeCheckedProduct() {
+        for (index in (_foryou.size - 1) downTo 0) {
+            val item = _foryou.getOrNull(index) ?: break
+            if (item.isCheck)
+                _foryou.removeAt(index)
+        }
+        notifyDataSetChanged()
+    }
+
 }

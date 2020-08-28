@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.lazapp.model.PromotionProduct
 import kotlinx.android.synthetic.main.fragment_promotion.*
-import kotlinx.android.synthetic.main.fragment_promotion.view.*
+
 
 class PromotionFragment : Fragment(R.layout.fragment_promotion) {
     private var promotionProduct: PromotionProduct? = null

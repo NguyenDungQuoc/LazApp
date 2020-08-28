@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
 import com.example.lazapp.model.ForYouProduct
-import kotlinx.android.synthetic.main.row_cart.view.*
 import kotlinx.android.synthetic.main.row_foryou.view.*
 
 class ForYouAdapter(
@@ -63,11 +62,6 @@ class ForYouAdapter(
     override fun getItemCount() = productForYou.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //        val imgForYou: ImageView = itemView.imgForYou
-//        val textDiscount: TextView = itemView.tvDiscountForYou
-//        val textNameForYou: TextView = itemView.tvNameForYou
-//        val texPriceForYou:TextView = itemView.tvPriceForYou
-//        val textPriceDiscoutForYou:TextView = itemView.tvPriceDiscountForYou
         init {
             itemView.setOnClickListener {
                 var position = adapterPosition

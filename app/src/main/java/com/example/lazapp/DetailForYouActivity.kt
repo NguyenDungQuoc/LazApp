@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.nav_menu_cart.*
 import kotlinx.android.synthetic.main.row_detail_foryou.*
 
 class DetailForYouActivity : AppCompatActivity() {
-    private var menu: Menu? = null
     private var forYouItem: ForYouProduct? = null
     private var counter: Int = 0
     private var listLike: MutableList<String>? = null
