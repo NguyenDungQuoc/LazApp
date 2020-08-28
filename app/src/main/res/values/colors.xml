@@ -11,5 +11,8 @@
     <color name="black">#3d3d3d</color>
     <color name="blue_bg_trending">#7efff5</color>
     <color name="blue_name_trending">#3c40c6</color>
-
+    <color name="yellow_star">#f9ca24</color>
+    <color name="pink_red">#f01a35</color>
+    <color name="transparent">#10000000</color>
+    <color name="gray_10">#efe5fd</color>
 </resources>

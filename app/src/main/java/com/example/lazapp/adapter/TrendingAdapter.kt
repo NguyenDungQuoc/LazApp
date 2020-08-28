@@ -9,9 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
-import com.example.lazapp.model.FlashSaleProduct
 import com.example.lazapp.model.TrendingProduct
-import kotlinx.android.synthetic.main.trending_view.view.*
+import kotlinx.android.synthetic.main.row_trending.view.*
 
 class TrendingAdapter(
     private val context: Context,
@@ -35,7 +34,7 @@ class TrendingAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(context).inflate(R.layout.trending_view, parent, false)
+        var itemView = LayoutInflater.from(context).inflate(R.layout.row_trending, parent, false)
         return ViewHolder(itemView)
     }
 

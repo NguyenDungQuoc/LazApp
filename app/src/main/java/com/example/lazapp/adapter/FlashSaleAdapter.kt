@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
 import com.example.lazapp.model.FlashSaleProduct
-import kotlinx.android.synthetic.main.flash_sale_view.view.*
+import kotlinx.android.synthetic.main.row_flash_sale.view.*
 
 class   FlashSaleAdapter(
     private val context: Context,
@@ -35,7 +35,7 @@ class   FlashSaleAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.flash_sale_view, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.row_flash_sale, parent, false)
         return ViewHolder(itemView)
     }
 
