@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -17,7 +16,6 @@ import kotlinx.android.synthetic.main.nav_menu_cart.*
 import kotlinx.android.synthetic.main.row_detail_foryou.*
 
 class DetailForYouActivity : AppCompatActivity() {
-    private var menu: Menu? = null
     private var forYouItem: ForYouProduct? = null
     private var counter: Int = 0
     private var listLike: MutableList<String>? = null
@@ -48,12 +46,16 @@ class DetailForYouActivity : AppCompatActivity() {
             object : TypeToken<MutableList<String>>() {}.type
         ) ?: mutableListOf()
 
-        var sharedPre: SharedPreferences = getSharedPreferences("APP_LAZADA", MODE_PRIVATE)
-        val productJsonArray: String? = sharedPre?.getString("APP_LAZADA", "")
+        val sharedPre: SharedPreferences = getSharedPreferences("APP_LAZADA", MODE_PRIVATE)
+        sharedPre.getString("APP_LAZADA", "")
         for (id in (listLike ?: mutableListOf())) {
             if (id == forYouItem?.id) {
                 forYouItem?.isLike = true
             }
+        }
+        if (forYouItem?.isLike == true) {
+            val item = icLikeForYouDetail
+            item.setBackgroundResource(R.drawable.ic_heart_click)
         }
         //for cua list Card
         for (id in (listCart ?: mutableListOf())) {
@@ -61,14 +63,10 @@ class DetailForYouActivity : AppCompatActivity() {
                 forYouItem?.isSelected = true
             }
         }
+        //thêm vào giỏ hàng và ẩn button
         if (forYouItem?.isSelected == true) {
             val item = btnCart
             item.isEnabled = false
-        }
-
-        if (forYouItem?.isLike == true) {
-            val item = icLikeForYouDetail
-            item.setBackgroundResource(R.drawable.ic_heart_click)
         }
     }
 
@@ -79,7 +77,7 @@ class DetailForYouActivity : AppCompatActivity() {
         tvPriceForYouDetail.text = "${forYouItem?.itemPrice}  đ"
         textNameForYouDetail.text = forYouItem?.itemTitle
 
-        var format: String = String.format("%.1f", forYouItem?.itemRatingScore)
+        val format: String = String.format("%.1f", forYouItem?.itemRatingScore)
 
         textNumberRate.text = "${format} /5"
 
@@ -89,7 +87,7 @@ class DetailForYouActivity : AppCompatActivity() {
     fun onClickButton(view: View) {
         when (view.id) {
             R.id.btnListCart -> {
-                val intent: Intent = Intent(this@DetailForYouActivity, CartForYouActivity::class.java)
+                val intent = Intent(this@DetailForYouActivity, CartForYouActivity::class.java)
                 intent.putParcelableArrayListExtra(
                     "DATA",
                     ArrayList(promotionViewModel?.result?.value?.result?.forYou)
@@ -100,11 +98,10 @@ class DetailForYouActivity : AppCompatActivity() {
                 onBackPressed()
             }
             R.id.btnHome -> {
-                val intent: Intent = Intent(this@DetailForYouActivity, MainActivity::class.java)
+                val intent = Intent(this@DetailForYouActivity, MainActivity::class.java)
                 startActivity(intent)
             }
             R.id.btnCart -> {
-                counter++
                 textNumberCart.text = counter.toString()
                 forYouItem?.isSelected = true
                 if(forYouItem?.isSelected == true){
@@ -128,7 +125,7 @@ class DetailForYouActivity : AppCompatActivity() {
             }
             R.id.icLikeForYouDetail -> {
                 forYouItem?.isLike = !(forYouItem?.isLike ?: false)
-                var idCheck: Int? = forYouItem?.id?.toInt()
+                forYouItem?.id?.toInt()
                 if (forYouItem?.isLike == true) {
                     view.setBackgroundResource(R.drawable.ic_heart_click)
                 } else {

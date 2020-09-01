@@ -22,6 +22,6 @@ data class ForYouProduct(
     var itemUrl: String? = null,//9
     var isLike:Boolean = false,
     var isSelected:Boolean = false,
-    var isCheck:Boolean = false
-
+    var isCheck:Boolean = false,
+    var numberProductCart:Int? = 1
 ) : Parcelable

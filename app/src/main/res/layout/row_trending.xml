@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="120dp"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -20,7 +19,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_trending_line1"
+            android:id="@+id/tvTrendingLine1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
@@ -32,7 +31,7 @@
             android:text="@string/trending_line1" />
 
         <TextView
-            android:id="@+id/tv_trending_line2"
+            android:id="@+id/tvTrendingLine2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
