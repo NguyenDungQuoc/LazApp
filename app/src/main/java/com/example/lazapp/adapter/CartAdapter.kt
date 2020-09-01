@@ -1,43 +1,51 @@
 package com.example.lazapp.adapter
 
 import android.content.Context
+import android.icu.text.DecimalFormat
+import android.icu.text.NumberFormat
+import android.os.Build
 import android.text.TextPaint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
 import com.example.lazapp.model.ForYouProduct
-import kotlinx.android.synthetic.main.row_cart.*
 import kotlinx.android.synthetic.main.row_cart.view.*
-import kotlinx.android.synthetic.main.row_foryou.view.*
 
 class CartAdapter(
     private val context: Context,
     private var _foryou: MutableList<ForYouProduct>
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private var productForYou: MutableList<ForYouProduct> = _foryou
-    private var numProduct:Int = 0
+    private val listCheck: MutableList<ForYouProduct> = mutableListOf()
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            init {
-                itemView.checkBox.setOnClickListener {
-                    var position = adapterPosition
-                    var item = productForYou[position]
-                    item.isCheck = true
+        init {
+
+            itemView.checkBox.setOnClickListener {
+                val position = adapterPosition
+                val itemCB = productForYou.getOrNull(position)
+                itemCB?.isCheck = true
+            }
+
+            itemView.btnAdd.setOnClickListener {
+               val position = adapterPosition
+               val item = productForYou.getOrNull(position)
+                item?.numberProductCart = item?.numberProductCart?.plus(1)
+                itemView.textNumber.text = item?.numberProductCart.toString()
+            }
+            itemView.btnReduce.setOnClickListener {
+                val position = adapterPosition
+                val item = productForYou.getOrNull(position)
+                if ((item?.numberProductCart ?: 2) > 1) {
+                    item?.numberProductCart = item?.numberProductCart?.minus(1)
+                    itemView.textNumber.text = item?.numberProductCart.toString()
                 }
 
-                itemView.btnAdd.setOnClickListener {
-                    numProduct++
-                        itemView.textNumber.text = numProduct.toString()
-                }
-                itemView.btnReduce.setOnClickListener {
-                   if(numProduct > 0){
-                       numProduct--
-                       itemView.textNumber.text = numProduct.toString()
-                   }
-                }
             }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,7 +61,6 @@ class CartAdapter(
             tvNameCart.text = productFY?.itemTitle
             tvDiscountPercent.text = "-${productFY?.itemDiscount}"
             tvPriceDiscountCart.text = "${productFY?.itemDiscountPrice} đ"
-            textNumber.text = numProduct.toString()
             if (productFY?.itemPrice != "") {
                 tvPriceCart.text = "${productFY?.itemPrice} đ"
                 tvPriceCart.paintFlags =
@@ -61,6 +68,7 @@ class CartAdapter(
             } else {
                 tvPriceCart.text = ""
             }
+            textNumber.text = productFY?.numberProductCart.toString()
 //            if(productFY?.isCheck == true){
 //                checkBox.isChecked = true
 //            }else {
@@ -68,19 +76,29 @@ class CartAdapter(
 //            }
             checkBox.isChecked = productFY?.isCheck == true
         }
-  //     var sumPrice: Int = 0
-//        sumPrice = productFY?.itemDiscountPrice?.toInt()?.times(itemCount) ?: 0
+
 
     }
 
-    override fun getItemCount() = productForYou?.size
+    override fun getItemCount() = productForYou.size
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getSumPrice() : String {
+        var sum = 0
+        for (i in productForYou)
+        {
+            val price =  (i.itemDiscountPrice?.replace(".","")?.toIntOrNull() ?:0) * (i.numberProductCart ?:0)
+            sum += price
+        }
+        val format: NumberFormat = DecimalFormat("#,###")
+        return format.format(sum)
+    }
 
     fun getListCheckedProduct(): MutableList<ForYouProduct> {
-        val listCheck:MutableList<ForYouProduct> = mutableListOf()
-        for (i in 0 until _foryou.size)
-        {
+
+        for (i in 0 until _foryou.size) {
             val item = _foryou[i]
-            if(item.isCheck)
+            if (item.isCheck)
                 listCheck.add(item)
         }
         return listCheck

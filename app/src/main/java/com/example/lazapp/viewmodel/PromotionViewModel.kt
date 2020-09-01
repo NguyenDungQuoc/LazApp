@@ -6,8 +6,8 @@ import com.example.lazapp.model.ProductModel
 import com.example.lazapp.model.ProductResult
 import com.example.lazapp.repository.PromotionRepository
 
-class PromotionViewModel() : ViewModel() {
-    var promotionRepository: PromotionRepository? = PromotionRepository()
+class PromotionViewModel : ViewModel() {
+    private var promotionRepository: PromotionRepository? = PromotionRepository()
     var result: MutableLiveData<ProductModel<ProductResult>> = MutableLiveData<ProductModel<ProductResult>>()
     var errorMessage: MutableLiveData<String>? = MutableLiveData()
 

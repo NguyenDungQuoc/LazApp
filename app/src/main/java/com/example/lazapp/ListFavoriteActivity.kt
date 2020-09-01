@@ -37,7 +37,7 @@ class ListFavoriteActivity : AppCompatActivity() {
             object : TypeToken<MutableList<String>>() {}.type
         ) ?: mutableListOf()
         val listItem: MutableList<ForYouProduct> =
-            intent?.getParcelableArrayListExtra<ForYouProduct>("DATA") ?: mutableListOf()
+            intent?.getParcelableArrayListExtra("DATA") ?: mutableListOf()
         val listResult: MutableList<ForYouProduct> = mutableListOf()
         for (i in listItem) {
             for (id in (listLike ?: mutableListOf())) {
@@ -59,13 +59,13 @@ class ListFavoriteActivity : AppCompatActivity() {
         val actionBar: ActionBar? = supportActionBar
         actionBar?.title = "Danh sách yêu thích"
         title = actionBar?.title
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.btnCartFavorite -> {
-                val intent: Intent = Intent(this@ListFavoriteActivity, CartForYouActivity::class.java)
+                val intent = Intent(this@ListFavoriteActivity, CartForYouActivity::class.java)
                 startActivity(intent)
             }
             android.R.id.home -> {

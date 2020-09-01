@@ -4,8 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lazapp.R
@@ -14,7 +12,7 @@ import kotlinx.android.synthetic.main.row_trending.view.*
 
 class TrendingAdapter(
     private val context: Context,
-    private val _trending: MutableList<TrendingProduct>
+    _trending: MutableList<TrendingProduct>
 ) : RecyclerView.Adapter<TrendingAdapter.ViewHolder>() {
     private var trending: MutableList<TrendingProduct> = _trending
 
@@ -34,25 +32,23 @@ class TrendingAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var itemView = LayoutInflater.from(context).inflate(R.layout.row_trending, parent, false)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.row_trending, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val trendingPos = trending.getOrNull(position)
-        holder.apply {
+        holder.itemView.apply {
             Glide.with(imgTrending.context).load(trendingPos?.items?.firstOrNull()?.itemImg)
                 .into(imgTrending)
-            textTrendingLine1.text = "Top Laz"
-            textTrendingLine2.text = "Top Đề Xuất"
+            tvTrendingLine1.text = "Top Laz"
+            tvTrendingLine2.text = "Top Đề Xuất"
         }
 
     }
 
     override fun getItemCount() = trending.size
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imgTrending: ImageView = itemView.imgTrending
-        val textTrendingLine1: TextView = itemView.tv_trending_line1
-        val textTrendingLine2: TextView = itemView.tv_trending_line2
+
     }
 }

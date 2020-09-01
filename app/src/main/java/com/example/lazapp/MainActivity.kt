@@ -34,22 +34,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         lnLike.setOnClickListener {
-            val intent: Intent = Intent(this@MainActivity, ListFavoriteActivity::class.java)
+            val intent = Intent(this@MainActivity, ListFavoriteActivity::class.java)
             intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
             startActivity(intent)
         }
         lnCart.setOnClickListener {
-            val intent: Intent = Intent(this@MainActivity, CartForYouActivity::class.java)
+            val intent = Intent(this@MainActivity, CartForYouActivity::class.java)
            intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
             startActivity(intent)
         }
         promotionViewModel = ViewModelProviders.of(this).get(PromotionViewModel::class.java)
-        //flashsale product
-        flashsale()
-        //trending product
+
+        flashSale()
         trending()
-        //Foryouproduct
-        foryou()
+        forYou()
         resultOfPromotion()
 
         getAllData()
@@ -87,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun foryou() {
+    private fun forYou() {
         recyclerViewForYou.layoutManager = GridLayoutManager(this, 2)
         recyclerViewForYou.setHasFixedSize(true)
         forYouAdapter = ForYouAdapter(baseContext, mutableListOf())
@@ -121,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         recyclerViewTrending.adapter = trendingAdapter
     }
 
-    private fun flashsale() {
+    private fun flashSale() {
         recyclerViewFlashSale.layoutManager =
             GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false)
         recyclerViewFlashSale.setHasFixedSize(true)
@@ -151,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         pageIndicatorView.selection = 2
 
         promotionViewModel?.errorMessage?.observe(this, {
-            val builder = AlertDialog.Builder(this)
+            AlertDialog.Builder(this)
                 .setTitle("Error")
                 .setMessage("Không thể tải dữ liệu")
                 .setPositiveButton(
