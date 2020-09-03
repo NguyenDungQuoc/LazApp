@@ -9,6 +9,6 @@ interface RetrofitInterface {
     /**
      * @GET declares an HTTP GET request
      */
-    @GET("/Home/GetAllHomeData")
+    @GET("/App/TestApi/home.json")
     fun getAllHomeData(): Call<ProductModel<ProductResult>>
 }

@@ -21,9 +21,13 @@ class CartAdapter(
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
     private var productForYou: MutableList<ForYouProduct> = _foryou
     private val listCheck: MutableList<ForYouProduct> = mutableListOf()
+    var onClick: ((ForYouProduct?) -> (Unit))? = null
+
+
+
+    @RequiresApi(Build.VERSION_CODES.N)
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
-
             itemView.checkBox.setOnClickListener {
                 val position = adapterPosition
                 val itemCB = productForYou.getOrNull(position)
@@ -35,6 +39,9 @@ class CartAdapter(
                val item = productForYou.getOrNull(position)
                 item?.numberProductCart = item?.numberProductCart?.plus(1)
                 itemView.textNumber.text = item?.numberProductCart.toString()
+                itemView.tvDiscountPercent.text = getSumOrder().toString()
+                notifyDataSetChanged()
+                onClick?.invoke(item)
             }
             itemView.btnReduce.setOnClickListener {
                 val position = adapterPosition
@@ -42,12 +49,16 @@ class CartAdapter(
                 if ((item?.numberProductCart ?: 2) > 1) {
                     item?.numberProductCart = item?.numberProductCart?.minus(1)
                     itemView.textNumber.text = item?.numberProductCart.toString()
+                    itemView.tvDiscountPercent.text = getSumOrder().toString()
+                    notifyDataSetChanged()
+                    onClick?.invoke(item)
                 }
 
             }
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(context).inflate(R.layout.row_cart, parent, false)
         return ViewHolder(itemView)
@@ -60,6 +71,7 @@ class CartAdapter(
                 .into(imgCart)
             tvNameCart.text = productFY?.itemTitle
             tvDiscountPercent.text = "-${productFY?.itemDiscount}"
+//            tvDiscountPercent.text = getSumOrder().toString()
             tvPriceDiscountCart.text = "${productFY?.itemDiscountPrice} đ"
             if (productFY?.itemPrice != "") {
                 tvPriceCart.text = "${productFY?.itemPrice} đ"
@@ -77,7 +89,6 @@ class CartAdapter(
             checkBox.isChecked = productFY?.isCheck == true
         }
 
-
     }
 
     override fun getItemCount() = productForYou.size
@@ -93,7 +104,13 @@ class CartAdapter(
         val format: NumberFormat = DecimalFormat("#,###")
         return format.format(sum)
     }
-
+    fun getSumOrder(): Int{
+        var sumNum = 0
+        for( item in productForYou){
+            sumNum += (item.numberProductCart ?: 0)
+        }
+        return sumNum
+    }
     fun getListCheckedProduct(): MutableList<ForYouProduct> {
 
         for (i in 0 until _foryou.size) {
