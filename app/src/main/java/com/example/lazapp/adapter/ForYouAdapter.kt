@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.row_foryou.view.*
 
 class ForYouAdapter(
     private val context: Context,
-    private var _foryou: MutableList<ForYouProduct>
+    _foryou: MutableList<ForYouProduct>
 ) :
     RecyclerView.Adapter<ForYouAdapter.ViewHolder>() {
     private var productForYou: MutableList<ForYouProduct> = _foryou
@@ -64,8 +64,8 @@ class ForYouAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
-                var position = adapterPosition
-                var item = productForYou[position]
+                val position = adapterPosition
+                val item = productForYou[position]
                 onClick?.invoke(item)
             }
         }
