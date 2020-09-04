@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity() {
             R.id.lnLike -> {
                 val intent = Intent(this@MainActivity, ListFavoriteActivity::class.java)
                 intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
-                intent.putExtra("NUMBER1",textNumberCart.text)
+                intent.putExtra("NUMBER",textNumberCart.text)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
             }
@@ -223,6 +223,10 @@ class MainActivity : AppCompatActivity() {
                 intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
+            }
+            R.id.lnUser -> {
+                val intent = Intent(this@MainActivity, RegisterLoginActivity::class.java)
+                startActivity(intent)
             }
         }
     }

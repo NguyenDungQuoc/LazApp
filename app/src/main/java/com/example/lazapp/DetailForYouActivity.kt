@@ -42,7 +42,7 @@ class DetailForYouActivity : AppCompatActivity() {
 
         getDataFromDB()
 
-        textNumberCart.text = intent?.getStringExtra("NUMBER_FROM_LIST_FAVORITE")
+        textNumberCart.text = intent?.getStringExtra("NUMBER")
         adapter = ForYouAdapter(baseContext, mutableListOf())
         promotionViewModel?.result?.observe(this, {
             val listItemForYou = it.result?.forYou

@@ -32,11 +32,11 @@ class ListFavoriteActivity : AppCompatActivity() {
         recyclerViewListFavorite.setHasFixedSize(true)
 
         showListFavorite()
-        var number =  intent?.getStringExtra("NUMBER1")
+        var number =  intent?.getStringExtra("NUMBER")
         adapter?.onClick = {
             val intent = Intent(this@ListFavoriteActivity,DetailForYouActivity::class.java)
             intent.putExtra("DATA", it)
-            intent.putExtra("NUMBER_FROM_LIST_FAVORITE",number)
+            intent.putExtra("NUMBER",number)
             startActivity(intent)
         }
 
