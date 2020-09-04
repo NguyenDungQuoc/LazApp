@@ -42,7 +42,7 @@ class DetailForYouActivity : AppCompatActivity() {
 
         getDataFromDB()
 
-
+        textNumberCart.text = intent?.getStringExtra("NUMBER_FROM_LIST_FAVORITE")
         adapter = ForYouAdapter(baseContext, mutableListOf())
         promotionViewModel?.result?.observe(this, {
             val listItemForYou = it.result?.forYou
@@ -115,8 +115,11 @@ class DetailForYouActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        EventBus.getDefault().post(textNumberCart.text.toString().toIntOrNull())
+        if(textNumberCart.text.toString().toIntOrNull() != null){
+            EventBus.getDefault().post(textNumberCart.text.toString().toIntOrNull())
+        }
         super.onDestroy()
+
     }
 
     fun onClickButton(view: View) {
@@ -151,8 +154,8 @@ class DetailForYouActivity : AppCompatActivity() {
                 prefsEditor?.apply()
                 adapter?.notifyDataSetChanged()
                 //get number form text
-              var a= textNumberCart.text.toString().toInt()
-                textNumberCart.text = a.plus(1).toString()
+              val textNum= textNumberCart.text.toString().toIntOrNull()
+                textNumberCart.text = textNum?.plus(1).toString()
             }
             R.id.btnBuyNow -> {
             }

@@ -8,13 +8,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewListFavorite"
-        android:scrollbars="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         android:clipToPadding="false"
-        android:padding="4dp"
         android:nestedScrollingEnabled="false"
-        app:layout_constraintTop_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/head_line"
+        android:padding="4dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_foryou" />
 </androidx.constraintlayout.widget.ConstraintLayout>
