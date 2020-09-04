@@ -40,7 +40,18 @@ class MainActivity : AppCompatActivity() {
     private var listCart: MutableList<ForYouProduct>? = null
     private var stringIdCart: String? = null
 
-    private var mhandle: Handler? = null
+    private var mhandle: Handler? = Handler()
+    var mRunnable: Runnable = Runnable {
+        var currentPage = viewPager.currentItem
+        //reverse pagecurrent ve page 0
+        currentPage =
+            if (currentPage.plus(1) >= (promotionViewModel?.result?.value?.result?.promotion?.size ?: 0)) {
+                0
+            } else {
+                currentPage.plus(1)
+            }
+        viewPager.currentItem = currentPage
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,19 +124,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    var mRunnable: Runnable = Runnable {
-        var currentPage = viewPager.currentItem
-        //reverse pagecurrent ve page 0
 
-
-        currentPage =
-            if (currentPage.plus(1) >= promotionViewModel?.result?.value?.result?.promotion?.size!!) {
-                0
-            } else {
-                currentPage.plus(1)
-            }
-        viewPager.currentItem = currentPage
-    }
 
 
     private fun forYou() {
@@ -214,6 +213,7 @@ class MainActivity : AppCompatActivity() {
             R.id.lnLike -> {
                 val intent = Intent(this@MainActivity, ListFavoriteActivity::class.java)
                 intent.putParcelableArrayListExtra("DATA", ArrayList(promotionViewModel?.result?.value?.result?.forYou) )
+                intent.putExtra("NUMBER1",textNumberCart.text)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left)
             }

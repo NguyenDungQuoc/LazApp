@@ -14,6 +14,7 @@ import com.example.lazapp.model.ForYouProduct
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.activity_list_favorite.*
+import kotlinx.android.synthetic.main.nav_menu_home.*
 
 class ListFavoriteActivity : AppCompatActivity() {
     private var adapter: ForYouAdapter? = null
@@ -21,6 +22,7 @@ class ListFavoriteActivity : AppCompatActivity() {
     private var prefsEditor: SharedPreferences.Editor? = null
     private var listLike: MutableList<String>? = null
     private var listIdString: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_favorite)
@@ -29,6 +31,19 @@ class ListFavoriteActivity : AppCompatActivity() {
         recyclerViewListFavorite.layoutManager = GridLayoutManager(this, 2)
         recyclerViewListFavorite.setHasFixedSize(true)
 
+        showListFavorite()
+        var number =  intent?.getStringExtra("NUMBER1")
+        adapter?.onClick = {
+            val intent = Intent(this@ListFavoriteActivity,DetailForYouActivity::class.java)
+            intent.putExtra("DATA", it)
+            intent.putExtra("NUMBER_FROM_LIST_FAVORITE",number)
+            startActivity(intent)
+        }
+
+
+    }
+
+    private fun showListFavorite() {
         sharedPre = getSharedPreferences("APP_LAZADA", Activity.MODE_PRIVATE)
         prefsEditor = sharedPre?.edit()
         listIdString = sharedPre?.getString("LIST_ID", "") ?: ""
@@ -66,6 +81,7 @@ class ListFavoriteActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.btnCartFavorite -> {
                 val intent = Intent(this@ListFavoriteActivity, CartForYouActivity::class.java)
+
                 startActivity(intent)
             }
             android.R.id.home -> {
