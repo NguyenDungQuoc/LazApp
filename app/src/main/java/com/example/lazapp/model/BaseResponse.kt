@@ -1,6 +1,6 @@
 package com.example.lazapp.model
 
-class ProductModel<T>(
+class BaseResponse<T>(
     var status: StatusProduct,
     var result: T? = null
 )

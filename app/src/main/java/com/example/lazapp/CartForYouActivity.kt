@@ -24,7 +24,7 @@ class CartForYouActivity : AppCompatActivity() {
     private var sharedPre: SharedPreferences? = null
     private var prefsEditor: SharedPreferences.Editor? = null
     private var listCart: MutableList<ForYouProduct>? = null
-    private var listIdCart: String? = null
+    private var stringCart: String? = null
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,9 +46,9 @@ class CartForYouActivity : AppCompatActivity() {
         sharedPre = getSharedPreferences("APP_LAZADA", Activity.MODE_PRIVATE)
         prefsEditor = sharedPre?.edit()
 
-        listIdCart = sharedPre?.getString("LIST_CART", "") ?: ""
+        stringCart = sharedPre?.getString("LIST_CART", "") ?: ""
         listCart = Gson().fromJson<MutableList<ForYouProduct>>(
-            listIdCart,
+            stringCart,
             object : TypeToken<MutableList<ForYouProduct>>() {}.type
         ) ?: mutableListOf()
 
@@ -57,6 +57,7 @@ class CartForYouActivity : AppCompatActivity() {
         adapter = CartAdapter(baseContext, (listCart ?: mutableListOf()))
         recyclerViewCart.adapter = adapter
         ////lướt xóa
+        adapter?.notifyDataSetChanged()
         val swipeHandler = object : SwipeToDeleteCallback() {
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {

@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_back_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView"
         android:layout_width="wrap_content"

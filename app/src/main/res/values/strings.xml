@@ -11,4 +11,7 @@
     <string name="trending_line2">Top đề xuất</string>
     <string name="for_you">Dành riêng cho bạn</string>
     <string name="VND"> đ</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="forget_password">Quên mật khẩu?</string>
 </resources>

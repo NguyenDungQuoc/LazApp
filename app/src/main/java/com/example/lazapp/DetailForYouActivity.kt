@@ -14,9 +14,6 @@ import com.example.lazapp.viewmodel.PromotionViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.actionbar_foryou_detail.*
-import kotlinx.android.synthetic.main.actionbar_foryou_detail.textNumberCart
-import kotlinx.android.synthetic.main.nav_menu_cart.*
-import kotlinx.android.synthetic.main.nav_menu_home.*
 import kotlinx.android.synthetic.main.row_detail_foryou.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -31,7 +28,7 @@ class DetailForYouActivity : AppCompatActivity() {
     private var sharedPre: SharedPreferences? = null
     private var prefsEditor: SharedPreferences.Editor? = null
     private var listCart: MutableList<ForYouProduct>? = null
-    private var listIdCart: String? = null
+    private var stringIdCart: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_for_you)
@@ -56,9 +53,9 @@ class DetailForYouActivity : AppCompatActivity() {
         sharedPre = getSharedPreferences("APP_LAZADA", Activity.MODE_PRIVATE)
         prefsEditor = sharedPre?.edit()
         //list Cart
-        listIdCart = sharedPre?.getString("LIST_CART", "") ?: ""
+        stringIdCart = sharedPre?.getString("LIST_CART", "") ?: ""
         listCart = Gson().fromJson<MutableList<ForYouProduct>>(
-            listIdCart,
+            stringIdCart,
             object : TypeToken<MutableList<ForYouProduct>>() {}.type
         ) ?: mutableListOf()
         ///list Favorite
@@ -84,13 +81,15 @@ class DetailForYouActivity : AppCompatActivity() {
     private fun getAllData() {
         promotionViewModel?.getAllHomeData()
     }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)
 
     }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun getSum(sum: Int?): Int?{
+    fun getSum(sum: Int?): Int? {
         textNumberCart.text = sum.toString()
         return sum
     }
@@ -99,6 +98,7 @@ class DetailForYouActivity : AppCompatActivity() {
         super.onStop()
         EventBus.getDefault().unregister(this)
     }
+
     private fun getDetailProduct() {
         forYouItem = intent?.getParcelableExtra("DATA")
         Glide.with(imgForYouDetail.context).load(forYouItem?.itemImg).into(imgForYouDetail)
@@ -115,7 +115,7 @@ class DetailForYouActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        if(textNumberCart.text.toString().toIntOrNull() != null){
+        if (textNumberCart.text.toString().toIntOrNull() != null) {
             EventBus.getDefault().post(textNumberCart.text.toString().toIntOrNull())
         }
         super.onDestroy()
@@ -138,23 +138,36 @@ class DetailForYouActivity : AppCompatActivity() {
             R.id.btnHome -> {
                 val intent = Intent(this@DetailForYouActivity, MainActivity::class.java)
                 startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+
             }
             R.id.btnCart -> {
                 forYouItem?.isSelected = true
-                if(forYouItem?.isSelected == true){
-                    if(forYouItem in (listCart ?: mutableListOf())){
-                        forYouItem?.numberProductCart = forYouItem?.numberProductCart?.plus(1)
-                    }else {
-                        forYouItem?.let {
-                            listCart?.add(it)
-                        }
+                //1. Duyet mang listCard, tim vi tri cua forYouItem trong listCard.
+                //2. Cap nhat so luong san pham forYouItem (tang 1)
+                //3. Luu lai mang forYouItem
+                var isFound = false
+                for(item in (listCart ?: mutableListOf())){
+                    if(item.id == forYouItem?.id){
+                        item.numberProductCart = (item.numberProductCart ?: 0) + 1
+                        isFound = true
+                        break
                     }
                 }
+
+                if(!isFound){
+                    forYouItem?.let {
+                        listCart?.add(it)
+                    }
+                }
+
+
+
                 prefsEditor?.putString("LIST_CART", Gson().toJson((listCart)))
                 prefsEditor?.apply()
                 adapter?.notifyDataSetChanged()
                 //get number form text
-              val textNum= textNumberCart.text.toString().toIntOrNull()
+                val textNum = textNumberCart.text.toString().toIntOrNull()
                 textNumberCart.text = textNum?.plus(1).toString()
             }
             R.id.btnBuyNow -> {

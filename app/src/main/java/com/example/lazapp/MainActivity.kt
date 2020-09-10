@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
     private var flashSaleAdapter: FlashSaleAdapter? = null
     private var trendingAdapter: TrendingAdapter? = null
     private var forYouAdapter: ForYouAdapter? = null
-    private var promotionViewModel: PromotionViewModel? = null
+    private var         promotionViewModel: PromotionViewModel? = null
     private var sharedPre: SharedPreferences? = null
     private var prefsEditor: SharedPreferences.Editor? = null
     private var listCart: MutableList<ForYouProduct>? = null
-    private var stringIdCart: String? = null
+    private var stringCart: String? = null
 
     private var mhandle: Handler? = Handler()
     var mRunnable: Runnable = Runnable {
@@ -96,9 +96,9 @@ class MainActivity : AppCompatActivity() {
         sharedPre = getSharedPreferences("APP_LAZADA", Activity.MODE_PRIVATE)
         prefsEditor = sharedPre?.edit()
         //list Cart
-        stringIdCart = sharedPre?.getString("LIST_CART", "") ?: ""
+        stringCart = sharedPre?.getString("LIST_CART", "") ?: ""
         listCart = Gson().fromJson<MutableList<ForYouProduct>>(
-            stringIdCart,
+            stringCart,
             object : TypeToken<MutableList<ForYouProduct>>() {}.type
         ) ?: mutableListOf()
         var sumNum = 0

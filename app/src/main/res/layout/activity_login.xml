@@ -4,45 +4,180 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:background="@drawable/bg_login">
+    android:background="@drawable/bg_login"
+    tools:context=".LoginActivity">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_back_login"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thông tin tài khoản"
-        android:textColor="@color/orange_strong"
         android:background="@drawable/border_below_text"
         android:gravity="center"
+        android:text="Thông tin tài khoản"
+        android:textColor="@color/orange_strong"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.292" />
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutCompat"
-        android:layout_width="265dp"
-        android:layout_height="220dp"
+        android:layout_width="275dp"
+        android:layout_height="250dp"
         android:background="@drawable/bg_login_layout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appCompatTextView2"
-        app:layout_constraintVertical_bias="0.047" >
-        
-        <EditText
-            android:layout_width="match_parent"
+        app:layout_constraintVertical_bias="0.047">
+
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/textInputLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--        android:layout_marginTop="10dp"-->
+        <!--            android:layout_marginStart="5dp"-->
+        <!--            android:layout_marginEnd="5dp"-->
+        <!--            app:errorEnabled="true"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent">-->
+
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:hint="Email"-->
+        <!--                android:inputType="textEmailAddress" />-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/textInputLayout2"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="5dp"-->
+        <!--            android:layout_marginEnd="5dp"-->
+        <!--            android:layout_marginTop="10dp"-->
+        <!--            app:errorEnabled="true"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textInputLayout"-->
+        <!--            app:passwordToggleEnabled="true">-->
+
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:hint="Password"-->
+        <!--                android:inputType="textPassword" />-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/textView"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginEnd="5dp"-->
+        <!--            android:text="@string/forget_password"-->
+        <!--            android:textColor="@color/blue_50"-->
+        <!--            android:textSize="12sp"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />-->
+
+        <!--        <androidx.appcompat.widget.AppCompatTextView-->
+        <!--            android:id="@+id/textView3"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:background="@drawable/btn_register"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="Đăng nhập"-->
+        <!--            android:textColor="@color/white"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintDimensionRatio="3:1.1"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"-->
+        <!--            app:layout_constraintVertical_bias="0.8"-->
+        <!--            app:layout_constraintWidth_percent=".32" />-->
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editText"
+            android:layout_width="0dp"
             android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_email_focus"
+            android:ems="10"
+            android:hint="@string/email"
+            android:singleLine="true"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            />
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editText2"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="5dp"
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_pass_focus"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
-    <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:text="Quên mật khẩu?"
+            android:textColor="@color/blue_50"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/btn_register"
+            android:gravity="center"
+            android:text="Đăng nhập"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="3:1.1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintVertical_bias="0.797"
+            app:layout_constraintWidth_percent=".32" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tạo tài khoản"
@@ -68,8 +203,8 @@
         app:layout_constraintVertical_bias="0.323" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@drawable/ic_google"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
